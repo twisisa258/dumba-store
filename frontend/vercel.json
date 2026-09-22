@@ -1,0 +1,7 @@
+{
+  "rewrites": [
+    { "source": "/sitemap.xml", "destination": "https://SUBSTITUA-PELO-SEU-BACKEND.onrender.com/sitemap.xml" },
+    { "source": "/robots.txt", "destination": "https://SUBSTITUA-PELO-SEU-BACKEND.onrender.com/robots.txt" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}

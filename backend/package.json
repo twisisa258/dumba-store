@@ -1,0 +1,25 @@
+{
+  "name": "dumba-api",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "db:setup": "node scripts/setup.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "express-rate-limit": "^7.4.0",
+    "helmet": "^7.1.0",
+    "pdf-lib": "^1.17.1",
+    "pg": "^8.12.0",
+    "zod": "^3.23.8"
+  }
+}
