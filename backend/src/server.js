@@ -60,11 +60,21 @@ app.use((err, req, res, _next) => {
   res.status(500).json({ error: 'server_error', message: t(getLang(req), 'server_error') });
 });
 
-const port = Number(process.env.PORT) || 3000;
-app.listen(port, () => {
-  console.log(`Dumba API a correr na porta ${port}`);
-  // Pagamentos pendentes fora de prazo (2 min no telemóvel) são cancelados e o stock volta à loja.
-  const sweep = () => sweepExpiredPayments().catch((e) => console.error('[pagamento] varredura falhou:', e.message));
-  setTimeout(sweep, 5_000);
-  setInterval(sweep, 30_000);
-});
+export default app;
+
+if (process.env.NODE_ENV !== 'production') {
+  const port = Number(process.env.PORT) || 3000;
+
+  app.listen(port, () => {
+    console.log(`Dumba API a correr na porta ${port}`);
+
+    const sweep = () =>
+      sweepExpiredPayments()
+        .catch((e) =>
+          console.error('[pagamento] varredura falhou:', e.message)
+        );
+
+    setTimeout(sweep, 5_000);
+    setInterval(sweep, 30_000);
+  });
+}
